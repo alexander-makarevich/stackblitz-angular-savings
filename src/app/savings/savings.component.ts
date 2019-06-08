@@ -19,7 +19,7 @@ export class SavingsComponent implements OnInit {
   constructor(private service: SavingsService) { }
 
   calculate() {
-    this.rows = this.service.calculate(this.income.value, this.interestRate.value);
+    this.rows = this.service.calculate(+this.income.value, +this.interestRate.value);
   }
 
   ngOnInit() {
