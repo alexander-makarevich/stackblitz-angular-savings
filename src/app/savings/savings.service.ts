@@ -11,21 +11,20 @@ export interface Row {
 
 @Injectable()
 export class SavingsService {
-  readonly income = 30000;
-  readonly interestRate = 0.02 / 12;
   readonly years = 30;
 
   constructor() { }
 
-  calculate(): Row[] {
+  calculate(income: number, interestRate: number): Row[] {
+    interestRate = interestRate / 12;
     let account = 0;
     let totalInterest = 0;
     const rows: Row[] = [];
     for (let m = 0; m < this.years * 12; ++m) {
-      const interest = account * this.interestRate;
-      account = account + this.income + interest;
+      const interest = account * interestRate;
+      account = account + income + interest;
       totalInterest += interest;
-      const savedMonthsCount = totalInterest / this.income;
+      const savedMonthsCount = totalInterest / income;
 
       rows.push({
         month: m,
