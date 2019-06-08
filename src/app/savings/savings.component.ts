@@ -13,10 +13,14 @@ export class SavingsComponent implements OnInit {
   income = new FormControl(0);
   interestRate = new FormControl(0);
 
-  rows: Row[];
+  rows: Row[] = [];
   displayedColumns = ['month', 'account', 'interest', 'totalInterest', 'savedMonthsCount'];
 
   constructor(private service: SavingsService) { }
+
+  calculate() {
+    this.rows = this.service.calculate();
+  }
 
   ngOnInit() {
     this.rows = this.service.calculate();
