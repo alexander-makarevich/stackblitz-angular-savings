@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { SavingsService } from './savings.service';
+import { SavingsService, Row } from './savings.service';
 
 @Component({
   selector: 'app-savings',
@@ -9,11 +9,13 @@ import { SavingsService } from './savings.service';
   providers: [SavingsService]
 })
 export class SavingsComponent implements OnInit {
+  rows: Row[];
+  columnsToDisplay = ['month'];
 
   constructor(private service: SavingsService) { }
 
   ngOnInit() {
-    console.log(this.service.calculate());
+    this.rows = this.service.calculate();
   }
 
 }

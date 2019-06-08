@@ -1,32 +1,38 @@
 import { Injectable } from '@angular/core';
 
 
-interface Row {
-  year: number;
+export interface Row {
   month: number;
-  economy: number;
+  account: number;
   interest: number;
-  sumPerMonth: number;
-  sumInterest: number;
+  totalInterest: number;
+  savedMonthsCount: number;
 }
 
 @Injectable()
 export class SavingsService {
   readonly income = 30000;
-  readonly interestRate = 0.02;
+  readonly interestRate = 0.02 / 12;
   readonly years = 30;
 
   constructor() { }
 
-  calculate(): string {
+  calculate(): Row[] {
     let account = 0;
-    const sumInterest = 0;
+    const rows: Row[] = [];
     for (let m = 0; m < this.years * 12; ++m) {
       const interest = account * this.interestRate;
-      account += interest;
-      const monthsSaved = 0;
+      account = account + this.income + interest;
+
+      rows.push({
+        month: m,
+        account: account,
+        interest: interest,
+        totalInterest: undefined,
+        savedMonthsCount: undefined
+      });
     }
-    return 'SavingsService->calculate()';
+    return rows;
   }
 
 }
