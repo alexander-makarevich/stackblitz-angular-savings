@@ -10,7 +10,7 @@ import { SavingsService, Row } from './savings.service';
 })
 export class SavingsComponent implements OnInit {
   rows: Row[];
-  columnsToDisplay = ['month'];
+  displayedColumns = ['month', 'account'];
 
   constructor(private service: SavingsService) { }
 
