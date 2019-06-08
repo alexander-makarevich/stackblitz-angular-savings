@@ -19,17 +19,20 @@ export class SavingsService {
 
   calculate(): Row[] {
     let account = 0;
+    let totalInterest = 0;
     const rows: Row[] = [];
     for (let m = 0; m < this.years * 12; ++m) {
       const interest = account * this.interestRate;
       account = account + this.income + interest;
+      totalInterest += interest;
+      const savedMonthsCount = totalInterest / this.income;
 
       rows.push({
         month: m,
         account: account,
         interest: interest,
-        totalInterest: undefined,
-        savedMonthsCount: undefined
+        totalInterest: totalInterest,
+        savedMonthsCount: savedMonthsCount
       });
     }
     return rows;
