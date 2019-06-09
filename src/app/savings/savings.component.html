@@ -11,7 +11,7 @@
     <input matInput type="text" [formControl]="interestRate" placeholder="Input">
   </mat-form-field>
 
-  <button mat-flat-button color="primary" (click)="calculate()">Calculate</button>
+  <button mat-flat-button color="primary" (click)="calculate()" [disabled]="income.invalid || interestRate.invalid">Calculate</button>
 </div>
 
 <table mat-table [dataSource]="rows">

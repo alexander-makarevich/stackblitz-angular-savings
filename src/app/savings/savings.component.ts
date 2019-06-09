@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators
+ } from '@angular/forms';
 
 import { SavingsService, Row } from './savings.service';
 
@@ -10,8 +11,8 @@ import { SavingsService, Row } from './savings.service';
   providers: [SavingsService]
 })
 export class SavingsComponent implements OnInit {
-  income = new FormControl(30000);
-  interestRate = new FormControl(0.02);
+  income = new FormControl(30000, [Validators.min(0), Validators.max(100000)]);
+  interestRate = new FormControl(0.02, [Validators.min(0), Validators.max(100)]);
 
   rows: Row[] = [];
   displayedColumns = ['month', 'account', 'interest', 'totalInterest', 'savedMonthsCount'];
