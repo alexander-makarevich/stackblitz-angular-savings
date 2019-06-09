@@ -1,0 +1,10 @@
+mat-form-field {
+  margin-right: 12px;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+  padding-left: 10px;
+  padding-right: 10px;
+  text-align: right;
+}
+
